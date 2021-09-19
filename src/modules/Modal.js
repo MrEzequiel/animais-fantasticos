@@ -13,11 +13,12 @@ export const Modal = {
   toggleModal() {
     if (Modal.containerModal.classList.contains('active')) {
       Modal.containerModal.classList.add('exit-animation')
-      let delayModal = setTimeout(() => {
+
+      setTimeout(() => {
         Modal.containerModal.classList.remove('exit-animation')
         Modal.containerModal.classList.toggle('active')
-        clearTimeout(delayModal)
       }, 300)
+
       return 0
     }
     Modal.containerModal.classList.toggle('active')

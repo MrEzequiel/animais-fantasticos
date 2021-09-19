@@ -1,6 +1,7 @@
 @import './modal.css';
 @import './tooltip.css';
 @import './dropdown-menu.css';
+@import './menu-mobile.css';
 
 * {
   margin: 0;
@@ -194,6 +195,17 @@ body {
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes show-left {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
   }
 }
 

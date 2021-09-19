@@ -14,14 +14,12 @@
 }
 
 [data-dropdown] .dropdown-menu {
-  visibility: hidden;
-  opacity: 0;
+  display: none;
 }
 
 [data-dropdown]:hover .dropdown-menu,
 [data-dropdown].active .dropdown-menu {
-  visibility: visible;
-  opacity: 1;
+  display: block;
   animation: show-up 300ms forwards;
 }
 
