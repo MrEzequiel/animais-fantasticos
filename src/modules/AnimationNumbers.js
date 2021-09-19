@@ -14,7 +14,7 @@ export const AnimationNumbers = {
           number.innerText = total
           clearInterval(timer)
         }
-      }, 25 * Math.random())
+      }, 30 * Math.random())
     })
   },
 
