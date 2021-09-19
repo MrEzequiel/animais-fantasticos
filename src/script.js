@@ -3,6 +3,7 @@ import { Modal } from './modules/Modal.js'
 import { Tooltip } from './modules/Tooltip.js'
 import { DropdownMenu } from './modules/DropdownMenu.js'
 import { Menu } from './modules/MenuMobile.js'
+import { AnimationNumbers } from './modules/AnimationNumbers.js'
 
 //INIT FUNCTIONS
 Animation.initScrollSmooth()
@@ -20,3 +21,5 @@ Tooltip.init()
 DropdownMenu.init()
 
 Menu.init()
+
+AnimationNumbers.observer()

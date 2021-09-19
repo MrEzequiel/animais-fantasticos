@@ -32,9 +32,11 @@ export const Animation = {
         const sectionTop = section.getBoundingClientRect().top
         const isSectionVisible = sectionTop - userScreenHeight < 0
 
-        isSectionVisible
-          ? section.classList.add(Animation.classActive)
-          : section.classList.remove(Animation.classActive)
+        if (isSectionVisible) {
+          section.classList.add(Animation.classActive)
+        } else if (section.classList.contains(Animation.classActive)) {
+          section.classList.remove(Animation.classActive)
+        }
       })
     }
 

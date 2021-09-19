@@ -2,6 +2,7 @@
 @import './tooltip.css';
 @import './dropdown-menu.css';
 @import './menu-mobile.css';
+@import './numbers.css';
 
 * {
   margin: 0;
