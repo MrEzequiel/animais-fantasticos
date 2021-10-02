@@ -1,4 +1,4 @@
-export const Operation = {
+const Operation = {
   init() {
     const operation = document.querySelector('[data-week]')
     const daysWeek = operation.dataset.week.split(',').map(Number)
@@ -6,13 +6,16 @@ export const Operation = {
 
     const dateNow = new Date()
     const dayNow = dateNow.getDay()
-    const hourlyNow = dateNow.getHours()
 
     const isWeekOpen = daysWeek.indexOf(dayNow) !== -1
     const isHourlyOpen = hourlyNow => hourlyWeek[0] && hourlyNow < hourlyWeek[1]
 
-    isWeekOpen && isHourlyOpen
-      ? operation.classList.add('open')
-      : operation.classList.remove('open')
+    if (isWeekOpen && isHourlyOpen()) {
+      operation.classList.add('open')
+    } else {
+      operation.classList.remove('open')
+    }
   }
 }
+
+export default Operation

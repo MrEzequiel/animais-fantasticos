@@ -1,4 +1,4 @@
-export const Tooltip = {
+const Tooltip = {
   tooltips: document.querySelectorAll('[data-tooltip]'),
 
   init() {
@@ -9,8 +9,8 @@ export const Tooltip = {
 
   onMouseOver(e) {
     const tooltipBox = Tooltip.createTooltipBox(this)
-    tooltipBox.style.top = e.pageY + 20 + 'px'
-    tooltipBox.style.left = e.pageX + 20 + 'px'
+    tooltipBox.style.top = `${e.pageY + 20}px`
+    tooltipBox.style.left = `${e.pageX + 20}px`
 
     Tooltip.onMouseMove.tooltipBox = tooltipBox
     this.addEventListener('mousemove', Tooltip.onMouseMove)
@@ -23,8 +23,8 @@ export const Tooltip = {
   onMouseMove: {
     tooltipBox: '',
     handleEvent(e) {
-      this.tooltipBox.style.top = e.pageY + 20 + 'px'
-      this.tooltipBox.style.left = e.pageX + 20 + 'px'
+      this.tooltipBox.style.top = `${e.pageY + 20}px`
+      this.tooltipBox.style.left = `${e.pageX + 20}px`
     }
   },
 
@@ -48,3 +48,5 @@ export const Tooltip = {
     return tooltipBox
   }
 }
+
+export default Tooltip

@@ -1,6 +1,6 @@
 import outsideClick from './outsideClick.js'
 
-export const DropdownMenu = {
+const DropdownMenu = {
   dropdownMenus: document.querySelectorAll('[data-dropdown]'),
   events: ['touchstart', 'click'],
 
@@ -21,3 +21,5 @@ export const DropdownMenu = {
     })
   }
 }
+
+export default DropdownMenu

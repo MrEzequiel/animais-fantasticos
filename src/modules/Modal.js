@@ -1,4 +1,4 @@
-export const Modal = {
+const Modal = {
   buttonOpen: document.querySelector('.button-login'),
   buttonClose: document.querySelector("[data-modal='close']"),
   containerModal: document.querySelector('[data-modal="conteiner"]'),
@@ -10,6 +10,7 @@ export const Modal = {
       this.containerModal.addEventListener('click', this.clickOutside)
     }
   },
+
   toggleModal() {
     if (Modal.containerModal.classList.contains('active')) {
       Modal.containerModal.classList.add('exit-animation')
@@ -19,9 +20,10 @@ export const Modal = {
         Modal.containerModal.classList.toggle('active')
       }, 300)
 
-      return 0
+      return false
     }
     Modal.containerModal.classList.toggle('active')
+    return true
   },
   clickOutside(e) {
     if (Modal.containerModal === e.target) {
@@ -29,3 +31,5 @@ export const Modal = {
     }
   }
 }
+
+export default Modal

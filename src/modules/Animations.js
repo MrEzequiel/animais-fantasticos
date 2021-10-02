@@ -1,7 +1,6 @@
-export const Animation = {
+const Animation = {
   classActive: 'active',
-
-  // SCROLL SMOOTH ON INTERNAL LINKS
+  //  SCROLL SMOOTH ON INTERNAL LINKS
   initScrollSmooth() {
     const internalLinks = document.querySelectorAll('.menu a[href^="#"]')
 
@@ -22,7 +21,7 @@ export const Animation = {
     })
   },
 
-  //SCROLL ANIMATION
+  //  SCROLL ANIMATION
   initAnimateScrollPage() {
     const sections = document.querySelectorAll('.js-scroll')
     const userScreenHeight = window.innerHeight * 0.6
@@ -48,7 +47,7 @@ export const Animation = {
   initAccordion() {
     const accordionList = document.querySelectorAll('.faq-list dt')
 
-    function activateAccordion(e) {
+    function activateAccordion() {
       this.classList.toggle(Animation.classActive)
       this.nextElementSibling.classList.toggle(Animation.classActive)
     }
@@ -85,3 +84,5 @@ export const Animation = {
     })
   }
 }
+
+export default Animation

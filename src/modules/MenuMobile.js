@@ -1,6 +1,6 @@
 import outsideClick from './outsideClick.js'
 
-export const Menu = {
+const Menu = {
   menuButton: document.querySelector('[data-menu="button"]'),
   menuList: document.querySelector('[data-menu="list"]'),
   events: ['click', 'touchstart'],
@@ -12,7 +12,7 @@ export const Menu = {
       })
     }
   },
-  open(e) {
+  open() {
     Menu.menuButton.classList.add('active')
     Menu.menuList.classList.add('active')
 
@@ -27,3 +27,5 @@ export const Menu = {
     })
   }
 }
+
+export default Menu
