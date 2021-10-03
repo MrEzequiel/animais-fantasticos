@@ -1,34 +1,45 @@
-const Modal = {
-  buttonOpen: document.querySelector('.button-login'),
-  buttonClose: document.querySelector("[data-modal='close']"),
-  containerModal: document.querySelector('[data-modal="conteiner"]'),
+class Modal {
+  constructor(buttonOpen, buttonClose, containerModal) {
+    this.buttonOpen = document.querySelector(buttonOpen)
+    this.buttonClose = document.querySelector(buttonClose)
+    this.containerModal = document.querySelector(containerModal)
 
-  init() {
-    if (this.buttonClose && this.buttonClose && this.containerModal) {
-      this.buttonOpen.addEventListener('click', this.toggleModal)
-      this.buttonClose.addEventListener('click', this.toggleModal)
-      this.containerModal.addEventListener('click', this.clickOutside)
-    }
-  },
+    this.toggleModal = this.toggleModal.bind(this)
+    this.clickOutside = this.clickOutside.bind(this)
+  }
+
+  addModalEvent() {
+    this.buttonOpen.addEventListener('click', this.toggleModal)
+    this.buttonClose.addEventListener('click', this.toggleModal)
+    this.containerModal.addEventListener('click', this.clickOutside)
+  }
 
   toggleModal() {
-    if (Modal.containerModal.classList.contains('active')) {
-      Modal.containerModal.classList.add('exit-animation')
+    if (this.containerModal.classList.contains('active')) {
+      this.containerModal.classList.add('exit-animation')
 
       setTimeout(() => {
-        Modal.containerModal.classList.remove('exit-animation')
-        Modal.containerModal.classList.toggle('active')
+        this.containerModal.classList.remove('exit-animation')
+        this.containerModal.classList.toggle('active')
       }, 300)
 
       return false
     }
-    Modal.containerModal.classList.toggle('active')
+    this.containerModal.classList.toggle('active')
     return true
-  },
+  }
+
   clickOutside(e) {
-    if (Modal.containerModal === e.target) {
-      Modal.toggleModal()
+    if (this.containerModal === e.target) {
+      this.toggleModal()
     }
+  }
+
+  init() {
+    if (this.buttonClose && this.buttonClose && this.containerModal) {
+      this.addModalEvent()
+    }
+    return this
   }
 }
 

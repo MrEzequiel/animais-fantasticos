@@ -1,36 +1,46 @@
-const AnimationNumbers = {
-  init() {
-    const numbers = document.querySelectorAll('[data-number]')
+class AnimationNumbers {
+  constructor(numbers, observerTarger, observerClass) {
+    this.numbers = document.querySelectorAll(numbers)
+    this.observerTarget = document.querySelector(observerTarger)
+    this.observerClass = observerClass
 
-    numbers.forEach(number => {
-      const total = +number.innerText
-      const incre = Math.floor(total / 100)
-      let start = 0
+    this.handleMutation = this.handleMutation.bind(this)
+  }
 
-      const timer = setInterval(() => {
-        start += incre
-        number.innerText = `${start}`
-        if (start > total) {
-          number.innerText = total
-          clearInterval(timer)
-        }
-      }, 30 * Math.random())
-    })
-  },
+  static incrementNumber(number) {
+    const total = +number.innerText
+    const incre = Math.floor(total / 100)
+    let start = 0
+
+    const timer = setInterval(() => {
+      start += incre
+      number.innerText = `${start}`
+      if (start > total) {
+        number.innerText = total
+        clearInterval(timer)
+      }
+    }, 30 * Math.random())
+  }
+
+  animation() {
+    this.numbers.forEach(number => this.constructor.incrementNumber(number))
+  }
+
+  handleMutation(mutation) {
+    if (mutation[0].target.classList.contains(this.observerClass)) {
+      this.observation.disconnect()
+      this.animation()
+    }
+  }
 
   observer() {
-    let observation
-    function handleMutation(mutation) {
-      if (mutation[0].target.classList.contains('active')) {
-        observation.disconnect()
-        AnimationNumbers.init()
-      }
-    }
+    this.observation = new MutationObserver(this.handleMutation)
+    this.observation.observe(this.observerTarget, { attributes: true })
+  }
 
-    const observerTarget = document.querySelector('.numbers')
-    observation = new MutationObserver(handleMutation)
-
-    observation.observe(observerTarget, { attributes: true })
+  init() {
+    this.observer()
+    return this
   }
 }
 

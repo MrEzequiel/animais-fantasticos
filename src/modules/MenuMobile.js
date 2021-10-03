@@ -1,28 +1,43 @@
-import outsideClick from './outsideClick.js'
+import outsideClick from './outsideClick'
 
-const Menu = {
-  menuButton: document.querySelector('[data-menu="button"]'),
-  menuList: document.querySelector('[data-menu="list"]'),
-  events: ['click', 'touchstart'],
+class Menu {
+  constructor(button, list, events) {
+    this.menuButton = document.querySelector(button)
+    this.menuList = document.querySelector(list)
+
+    if (events === undefined) {
+      this.events = ['click', 'touchstart']
+    } else {
+      this.events = events
+    }
+
+    this.open = this.open.bind(this)
+  }
+
+  addEvent() {
+    this.events.forEach(userEvent => {
+      this.menuButton.addEventListener(userEvent, this.open)
+    })
+  }
 
   init() {
-    if (this.menuButton) {
-      this.events.forEach(userEvent => {
-        this.menuButton.addEventListener(userEvent, this.open)
-      })
+    if (this.menuButton && this.menuList) {
+      this.addEvent()
     }
-  },
-  open() {
-    Menu.menuButton.classList.add('active')
-    Menu.menuList.classList.add('active')
+    return this
+  }
 
-    outsideClick(Menu.menuList, Menu.events, () => {
-      Menu.menuList.classList.add('anima')
-      Menu.menuButton.classList.remove('active')
+  open() {
+    this.menuButton.classList.add('active')
+    this.menuList.classList.add('active')
+
+    outsideClick(this.menuList, this.events, () => {
+      this.menuList.classList.add('anima')
+      this.menuButton.classList.remove('active')
 
       setTimeout(() => {
-        Menu.menuList.classList.remove('active')
-        Menu.menuList.classList.remove('anima')
+        this.menuList.classList.remove('active')
+        this.menuList.classList.remove('anima')
       }, 500)
     })
   }

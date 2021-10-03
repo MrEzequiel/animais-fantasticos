@@ -1,27 +1,41 @@
-import Animation from './modules/Animations.js'
-import Modal from './modules/Modal.js'
-import Tooltip from './modules/Tooltip.js'
-import DropdownMenu from './modules/DropdownMenu.js'
-import Menu from './modules/MenuMobile.js'
-import Operation from './modules/Operation.js'
-import FetchAnimals from './modules/FetchAnimals.js'
-import FetchBTC from './modules/FetchBTC.js'
+import Animation from './modules/Animations'
+import ScrollPage from './modules/ScrollPage'
+import Modal from './modules/Modal'
+import Tooltip from './modules/Tooltip'
+import DropdownMenu from './modules/DropdownMenu'
+import Menu from './modules/MenuMobile'
+import Operation from './modules/Operation'
+import FetchAnimals from './modules/FetchAnimals'
+import FetchBTC from './modules/FetchBTC'
 
 //  INIT FUNCTIONS
 Animation.initScrollSmooth()
-Animation.initAnimateScrollPage()
 Animation.initAccordion()
 Animation.initTabNav()
 
 //  INIT MODAL
-Modal.init()
+const modal = new Modal(
+  '.button-login',
+  "[data-modal='close']",
+  "[data-modal='container']"
+)
+modal.init()
 
 //  INIT TOOLTIP
-Tooltip.init()
+const tooltip = new Tooltip('[data-tooltip]')
+tooltip.init()
+
+const scrollPage = new ScrollPage('.js-scroll', 'active')
+scrollPage.init()
 
 //  DROPDOWN MENU INIT
-DropdownMenu.init()
-Menu.init()
+const dropdownMenu = new DropdownMenu('[data-dropdown]')
+dropdownMenu.init()
+console.log(dropdownMenu)
+
+const menuMobile = new Menu('[data-menu="button"]', '[data-menu="list"]')
+menuMobile.init()
+
 Operation.init()
 FetchAnimals.init()
 FetchBTC.init()

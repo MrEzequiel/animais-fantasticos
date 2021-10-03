@@ -21,28 +21,6 @@ const Animation = {
     })
   },
 
-  //  SCROLL ANIMATION
-  initAnimateScrollPage() {
-    const sections = document.querySelectorAll('.js-scroll')
-    const userScreenHeight = window.innerHeight * 0.6
-
-    function animateScroll() {
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top
-        const isSectionVisible = sectionTop - userScreenHeight < 0
-
-        if (isSectionVisible) {
-          section.classList.add(Animation.classActive)
-        } else if (section.classList.contains(Animation.classActive)) {
-          section.classList.remove(Animation.classActive)
-        }
-      })
-    }
-
-    window.addEventListener('scroll', animateScroll)
-    animateScroll()
-  },
-
   // FAQ TOGGLE SELECT
   initAccordion() {
     const accordionList = document.querySelectorAll('.faq-list dt')

@@ -1,42 +1,40 @@
-const Tooltip = {
-  tooltips: document.querySelectorAll('[data-tooltip]'),
+class Tooltip {
+  constructor(tooltips) {
+    this.tooltips = document.querySelectorAll(tooltips)
 
-  init() {
+    this.onMouseMove = this.onMouseMove.bind(this)
+    this.onMouseLeave = this.onMouseLeave.bind(this)
+    this.onMouseOver = this.onMouseOver.bind(this)
+  }
+
+  addTooltipEvent() {
     this.tooltips.forEach(item => {
-      item.addEventListener('mouseover', Tooltip.onMouseOver)
+      item.addEventListener('mouseover', this.onMouseOver)
     })
-  },
+  }
 
-  onMouseOver(e) {
-    const tooltipBox = Tooltip.createTooltipBox(this)
-    tooltipBox.style.top = `${e.pageY + 20}px`
-    tooltipBox.style.left = `${e.pageX + 20}px`
+  onMouseOver({ currentTarget }) {
+    this.createTooltipBox(currentTarget)
 
-    Tooltip.onMouseMove.tooltipBox = tooltipBox
-    this.addEventListener('mousemove', Tooltip.onMouseMove)
+    currentTarget.addEventListener('mousemove', this.onMouseMove)
+    currentTarget.addEventListener('mouseleave', this.onMouseLeave)
+  }
 
-    Tooltip.onMouseLeave.tooltipBox = tooltipBox
-    Tooltip.onMouseLeave.element = this
-    this.addEventListener('mouseleave', Tooltip.onMouseLeave)
-  },
+  onMouseMove(e) {
+    this.tooltipBox.style.top = `${e.pageY + 20}px`
 
-  onMouseMove: {
-    tooltipBox: '',
-    handleEvent(e) {
-      this.tooltipBox.style.top = `${e.pageY + 20}px`
+    if (e.pageX + 260 > window.innerWidth) {
+      this.tooltipBox.style.left = `${e.pageX - 190}px`
+    } else {
       this.tooltipBox.style.left = `${e.pageX + 20}px`
     }
-  },
+  }
 
-  onMouseLeave: {
-    tooltipBox: '',
-    element: '',
-    handleEvent() {
-      this.tooltipBox.remove()
-      this.element.removeEventListener('mouseleave', Tooltip.onMouseLeave)
-      this.element.removeEventListener('mousemove', Tooltip.onMouseMove)
-    }
-  },
+  onMouseLeave({ currentTarget }) {
+    this.tooltipBox.remove()
+    currentTarget.removeEventListener('mouseleave', this.onMouseLeave)
+    currentTarget.removeEventListener('mousemove', this.onMouseMove)
+  }
 
   createTooltipBox(element) {
     const tooltipBox = document.createElement('div')
@@ -45,7 +43,12 @@ const Tooltip = {
     tooltipBox.innerHTML = text
 
     document.body.append(tooltipBox)
-    return tooltipBox
+    this.tooltipBox = tooltipBox
+  }
+
+  init() {
+    this.addTooltipEvent()
+    return this
   }
 }
 

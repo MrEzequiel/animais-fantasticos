@@ -1,4 +1,4 @@
-import AnimationNumbers from './AnimationNumbers.js'
+import AnimationNumbers from './AnimationNumbers'
 
 const FetchAnimals = {
   async init() {
@@ -12,8 +12,12 @@ const FetchAnimals = {
         const divAnimal = this.createAnimal(animal)
         numbersGrid.append(divAnimal)
       })
-
-      AnimationNumbers.observer()
+      const animationNumber = new AnimationNumbers(
+        '[data-number]',
+        '.numbers',
+        'active'
+      )
+      animationNumber.init()
     } catch (e) {
       console.log(e)
     }
