@@ -44,7 +44,7 @@
   border: 1rem solid #fb5;
   box-shadow: 0 0 0 1rem #fff;
 
-  width: min(400px, 80%);
+  width: min(600px, 80%);
 }
 
 .modal .modal-close {
@@ -92,16 +92,20 @@
 }
 
 .modal button[type='submit'] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
-  width: 40%;
+  width: min(10rem, 40%);
+  height: 50px;
   background: #e54;
   color: #fff;
 
   margin: 1rem auto 0;
-  padding: 1rem 2rem;
   border-radius: 0.4rem;
 
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
   font-family: 'IBM Plex Mono', monospace;
 }

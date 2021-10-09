@@ -27,7 +27,8 @@ class Menu {
     return this
   }
 
-  open() {
+  open(e) {
+    e.preventDefault()
     this.menuButton.classList.add('active')
     this.menuList.classList.add('active')
 
