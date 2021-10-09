@@ -7,6 +7,7 @@ import Menu from './modules/MenuMobile'
 import Operation from './modules/Operation'
 import FetchAnimals from './modules/FetchAnimals'
 import FetchBTC from './modules/FetchBTC'
+import SlideNav from './modules/SlideNav'
 
 //  INIT FUNCTIONS
 Animation.initScrollSmooth()
@@ -31,11 +32,17 @@ scrollPage.init()
 //  DROPDOWN MENU INIT
 const dropdownMenu = new DropdownMenu('[data-dropdown]')
 dropdownMenu.init()
-console.log(dropdownMenu)
 
 const menuMobile = new Menu('[data-menu="button"]', '[data-menu="list"]')
 menuMobile.init()
 
-Operation.init()
+const operation = new Operation('[data-week]')
+operation.init()
+
 FetchAnimals.init()
 FetchBTC.init()
+
+const slide = new SlideNav('.slide', '.container-slide')
+slide.init()
+
+slide.addControl('.custom-controls')
